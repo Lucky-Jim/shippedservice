@@ -1,0 +1,71 @@
+TRACE 2016/07/14 11:12:47.416503 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:12:47.417904 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:12:47.418513 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:12:47.418587 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:12:47.423682 utils.go:98: Console width is 80; help width is 79
+TRACE 2016/07/14 11:12:52.894493 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:12:52.895179 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:12:52.895261 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:12:52.895302 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:12:52.897251 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:02.752782 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:02.752874 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:02.753291 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:02.753342 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:02.755225 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:02.755278 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/TestProject/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"wf", Command:"", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:13:02.755292 commands.go:92: Running command(wf) subcommand() args([]string(nil)) help(false)
+TRACE 2016/07/14 11:13:02.755305 commands.go:160: objDesc.Name = "Workflow"
+TRACE 2016/07/14 11:13:02.755341 scripts.go:259: Starting ScriptService.Get()
+TRACE 2016/07/14 11:13:03.548326 scripts.go:1001: Downloaded create-and-deploy.shipped into /Users/tburnley/.shipped/scripts/cache
+TRACE 2016/07/14 11:13:03.552724 scripts.go:1001: Downloaded fast-deploy.shipped into /Users/tburnley/.shipped/scripts/cache
+ERROR 2016/07/14 11:13:03.553075 commands.go:98: Command Workflow requires a subcommand
+TRACE 2016/07/14 11:13:15.019871 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:15.020316 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:15.020390 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:15.020430 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:15.022409 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:15.022466 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/TestProject/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"local", Command:"", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:13:15.022492 commands.go:92: Running command(local) subcommand() args([]string(nil)) help(false)
+TRACE 2016/07/14 11:13:15.022506 commands.go:160: objDesc.Name = "Local"
+ERROR 2016/07/14 11:13:15.022651 commands.go:98: Command Local requires a subcommand
+TRACE 2016/07/14 11:13:27.834725 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:27.835180 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:27.835255 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:27.835295 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:27.837206 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:27.837266 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/TestProject/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"pj", Command:"", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:13:27.837280 commands.go:92: Running command(pj) subcommand() args([]string(nil)) help(false)
+ERROR 2016/07/14 11:13:27.839899 commands.go:98: Cannot find command pj
+TRACE 2016/07/14 11:13:33.219108 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:33.219198 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:33.219617 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:33.219660 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:33.221628 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:37.667098 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:37.667226 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:37.667297 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:37.667334 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:37.669649 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:37.669700 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/TestProject/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"pr", Command:"", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:13:37.669725 commands.go:92: Running command(pr) subcommand() args([]string(nil)) help(false)
+TRACE 2016/07/14 11:13:37.669738 commands.go:160: objDesc.Name = "Projects"
+ERROR 2016/07/14 11:13:37.669877 commands.go:98: Command Projects requires a subcommand
+TRACE 2016/07/14 11:13:49.762116 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:13:49.762557 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:13:49.762630 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:13:49.762669 config.go:134: Can't find config file /Users/tburnley/Code/TestProject/.shipped/shipped.ini (open /Users/tburnley/Code/TestProject/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:13:49.764484 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:13:49.764533 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/TestProject/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"Wizards", Command:"", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:13:49.764546 commands.go:92: Running command(Wizards) subcommand() args([]string(nil)) help(false)
+TRACE 2016/07/14 11:13:49.764558 commands.go:160: objDesc.Name = "Wizards"
+TRACE 2016/07/14 11:13:49.764581 wizards.go:114: Starting WizardService.List()
+TRACE 2016/07/14 11:20:12.716000 config.go:100: .shipped directory already exists
+TRACE 2016/07/14 11:20:12.716445 config.go:109: Config file .shipped/shipped.ini already exists in /Users/tburnley
+TRACE 2016/07/14 11:20:12.716519 config.go:139: Using config file /Users/tburnley/.shipped/shipped.ini
+TRACE 2016/07/14 11:20:12.716566 config.go:134: Can't find config file /Users/tburnley/Code/ShippedService/.shipped/shipped.ini (open /Users/tburnley/Code/ShippedService/.shipped/shipped.ini: no such file or directory)
+TRACE 2016/07/14 11:20:12.718378 utils.go:98: Console width is 171; help width is 120
+TRACE 2016/07/14 11:20:12.718436 main.go:129: Shipped-cli 1.0 b61 20151217 202952 starting with args struct { BootLogfile string; ConfigFile string; ConsoleMode bool; Debug bool; Expanded bool; FastBootstrap bool; Force bool; Full bool; Help bool; Json bool; Latest bool; LocalDocker bool; Logfile string; MockSDKClient bool; OutputFields string; ShippedHome string; ShowVersion bool; Server string; Token string; ObjType string; Command string; Arguments []string }{BootLogfile:"", ConfigFile:"", ConsoleMode:false, Debug:false, Expanded:true, FastBootstrap:false, Force:false, Full:false, Help:false, Json:false, Latest:false, LocalDocker:false, Logfile:"/Users/tburnley/Code/ShippedService/shipped-cli.log", MockSDKClient:false, OutputFields:"", ShippedHome:"", ShowVersion:false, Server:"https://api.ciscoshipped.io", Token:"WzaEQPBaDFJYXHqlPIvlnHGZuAmzwXgX", ObjType:"local", Command:"bootstrap", Arguments:[]string(nil)}
+TRACE 2016/07/14 11:20:12.718457 commands.go:92: Running command(local) subcommand(bootstrap) args([]string(nil)) help(false)
+TRACE 2016/07/14 11:20:12.718473 commands.go:160: objDesc.Name = "Local"
+ERROR 2016/07/14 11:20:12.718529 commands.go:98: Local Bootstrap: Required UUID argument projectId not provided and no saved value of projectId available
