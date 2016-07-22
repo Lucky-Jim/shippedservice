@@ -40,13 +40,13 @@ public class UserController {
 	public String sendString() {
 		logger.info("Incoming string request");
 
-		
+			
 		return "This is a String";
 	}
 	
 
 	@RequestMapping("/user/{name}")
-	ModelAndView User(@PathVariable String name)  {
+	ModelAndView User(@PathVariable String name)  { 	
 
 		List<String> users = new LinkedList<String>();
 		logger.info("Incoming User request [" + name + "]");
@@ -66,6 +66,20 @@ public class UserController {
 		
 		return model;
 	}
+	
+	
+	@RequestMapping("/video")
+	public ModelAndView requestVideo() {
+		logger.info("Incoming video request");
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("video");
+
+		return model;
+	}
+	
+	
+	
 	
 	
 }
