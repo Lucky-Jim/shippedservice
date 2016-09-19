@@ -11,7 +11,7 @@
     
 
  <video  controls>
-  <source src="<spring:url value="/video/2934/manifest.m3u8" />" />
+  <source src="<spring:url value="/video/2934/manifest.m3u8" />" type="application/x-mpegURL" />
   Your browser does not support the video tag.
 </video> 
 

@@ -14,3 +14,4 @@ hs_err_pid*
 # build artifacts
 target/
 /shipped-cli.log
+/build_log.log
