@@ -78,7 +78,13 @@ public class UserController {
 		return model;
 	}
 	
-	
+	@RequestMapping("/spark/{name}")
+	public String sparkHook() {
+		logger.info("Incoming Sparks request");
+
+			
+		return "This is a String";
+	}
 	
 	
 	
