@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManifestGenerator {
 
 	private static final Logger logger = LoggerFactory.getLogger(ManifestGenerator.class);
+	
+	@Autowired
+	ApplicationContext act;
 
 	
 	@RequestMapping(value="/video/{assetId}/manifest.m3u8", produces="application/x-mpegURL")
-	
 	public String requestManifest(@PathVariable String assetId) {
 		logger.info("Incoming manifest request for : " + assetId );
 
@@ -42,12 +46,14 @@ public class ManifestGenerator {
 		response.add("#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=121000,RESOLUTION=400x300\n");
 		response.add("manifest-110k.m3u8\n");
 		
-		logger.info("REsponse : \n" + String.join("", response) );
+		logger.info("Response : \n" + String.join("", response) );
 		return String.join("", response);
 	}
 	
 	@RequestMapping(value="/video/{assetId}/manifest-{bitrate}.m3u8", produces="application/x-mpegURL")
 	public String requestManifest(@PathVariable String assetId ,@PathVariable String bitrate ) {
+		
+		VideoProcessor processor = (VideoProcessor)act.getBean( VideoProcessor.class );
 		
 		logger.info("Incoming sub-manifest request for : " + assetId + " bitrate : " + bitrate);
 
@@ -55,8 +61,27 @@ public class ManifestGenerator {
 		
 		response.add("#EXTM3U\n");
 		response.add("\n");
-
+		response.add("#EXT-X-TARGETDURATION:10");
+		response.add("\n");
+		response.add("#EXT-X-VERSION:3");
+		response.add("\n");
+		response.add("#EXT-X-MEDIA-SEQUENCE:3");
+		response.add("\n");
 		
+		
+		for( VideoSegmentInfo s : processor.getSegmentInfos() )
+		{
+			response.add("#EXTINF:10,");
+			response.add("\n");
+			response.add( bitrate + "-fileSequence" + s.getSequenceNo() + ".ts");
+			response.add("\n");
+		}
+
+		logger.info("REsponse : \n" + String.join("", response) );
 		return String.join("", response);
 	}
+	
+	
+	
+	
 }
