@@ -1,4 +1,7 @@
-package com.cisco.spvss.testProject;
+package com.cisco.spvss.spark.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
 	 * "id": "Y2lzY29zcGFyazovL3VzL01FTUJFUlNISVAvYzU0MjdlNjMtYjFlMi00YTkyLWE4YmItMDA0NzFjOGU2ZWEyOjBkMjA0Y2IxLTUwYjctMzY3NS1iYjQ2LWFiMjg2ODFlNjQ0Yg",
 			"roomId": "Y2lzY29zcGFyazovL3VzL1JPT00vMGQyMDRjYjEtNTBiNy0zNjc1LWJiNDYtYWIyODY4MWU2NDRi",
@@ -10,17 +13,15 @@ package com.cisco.spvss.testProject;
 			"created": "2016-02-01T16:38:15.531Z"
 		
 	 */
-public class SparkConversation {
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class SparkConversation extends SparkObject{
 
 	
 	private String personEmail;
 	private String personId;
 	private String roomId;
-	private String id;
-	
-	String getID( ){
-		return id;
-	}
+
 	
 	String roomId( ){
 		return roomId;

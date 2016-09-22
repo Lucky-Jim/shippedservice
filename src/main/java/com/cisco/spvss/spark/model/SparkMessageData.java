@@ -1,5 +1,6 @@
-package com.cisco.spvss.testProject;
+package com.cisco.spvss.spark.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
@@ -13,6 +14,7 @@ package com.cisco.spvss.testProject;
     "created":"2015-12-04T17:33:56.767Z"
   }
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SparkMessageData {
 
 		private String id;

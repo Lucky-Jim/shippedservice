@@ -23,8 +23,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableScheduling
 @EnableAutoConfiguration
-@ComponentScan
-public class DemoApplication extends SpringApplication{
+@ComponentScan("com.cisco.spvss")
+public class DemoApplication extends SpringApplication {
 	static ConfigurableApplicationContext ctx;
 	private static final Logger tom_logger = LoggerFactory.getLogger(DemoApplication.class);
 	

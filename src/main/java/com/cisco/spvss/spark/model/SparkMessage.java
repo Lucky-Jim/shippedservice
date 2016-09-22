@@ -1,5 +1,6 @@
-package com.cisco.spvss.testProject;
+package com.cisco.spvss.spark.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
@@ -21,7 +22,8 @@ package com.cisco.spvss.testProject;
 } 
  */
 
-public class SparkMessage {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class SparkMessage extends SparkObject {
 
 	private String id;
 	
