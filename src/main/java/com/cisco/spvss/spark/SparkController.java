@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.cisco.spvss.spark.model.SparkMessage;
 import com.cisco.spvss.spark.model.SparkMessageData;
+import com.cisco.spvss.spark.model.SparkNotification;
 import com.cisco.spvss.spark.model.SparkRoom;
 import com.cisco.spvss.spark.model.SparkRoomCollection;
 import com.cisco.spvss.spark.model.SparkWebHookCollection;
@@ -45,17 +46,17 @@ public class SparkController implements InitializingBean {
 	 * the webhoox that I'm using..... registered on init
 	 */
 	@RequestMapping("/spark/test")
-	public String sparkHook( @RequestBody SparkMessage message) {
+	public String sparkHook( @RequestBody String notification ) {
 		tom_logger.info("Incoming Sparks request");
 
-		messages.add( message );
+		
 			
 		// Send Message
 		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
 		
 		
 		SparkMessageData messageOut = new SparkMessageData()
-				.setText("I received something from : " +  message.getName() )
+				.setText( notification )
 				.setPersonId(TomBurnley);
 
     			
