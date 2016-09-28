@@ -1,41 +1,38 @@
 package com.cisco.spvss.spark;
 
-import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.http.HttpHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.cisco.spvss.spark.model.SparkCollection;
 import com.cisco.spvss.spark.model.SparkMessage;
-import com.cisco.spvss.spark.model.SparkResponse;
+import com.cisco.spvss.spark.model.SparkMessageData;
 import com.cisco.spvss.spark.model.SparkRoom;
 import com.cisco.spvss.spark.model.SparkRoomCollection;
 import com.cisco.spvss.spark.model.SparkWebHookCollection;
 import com.cisco.spvss.spark.model.SparkWebhook;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 @RestController
 public class SparkController implements InitializingBean {
 
 	private static final Logger tom_logger = LoggerFactory.getLogger(SparkController.class);
 	final static String HOOK_NAME = "TomBot";
+	final static String accessToken = "MmZhNDc2MjMtNWY5Zi00MDU3LWI0MjUtOGJjYmM3ODBhYTYyYjNlYWMwZjctZWEx";
+    
+	
+	final static String TomBurnley = "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9jNTQyN2U2My1iMWUyLTRhOTItYThiYi0wMDQ3MWM4ZTZlYTI";
 	
 	/*
 	 * OK - so, my collections of things
@@ -53,11 +50,35 @@ public class SparkController implements InitializingBean {
 
 		messages.add( message );
 			
+		// Send Message
+		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
 		
 		
-		
+		SparkMessageData messageOut = new SparkMessageData()
+				.setText("I received something from : " +  message.getName() )
+				.setPersonId(TomBurnley);
+
+    			
+		messageOut = restTemplate.postForObject("https://api.ciscospark.com/v1/messages", messageOut, SparkMessageData.class );
+											  
 		return "This is a String";
 	}
+	
+	@Scheduled( cron="0 * * * * MON-FRI" )
+    public void reportCurrentTime() {
+		// Send Message
+		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
+		
+		
+		SparkMessageData message = new SparkMessageData()
+				.setText("Hello - I'm alive")
+				.setPersonId(TomBurnley);
+
+    			
+		message = restTemplate.postForObject("https://api.ciscospark.com/v1/messages", message, SparkMessageData.class );
+											  
+		tom_logger.info("Posted Test message to : ");
+    }
 	
 	/*
 	 * List the messages that I know of.... 
@@ -71,16 +92,16 @@ public class SparkController implements InitializingBean {
 	 * List the rooms that I know of.... 
 	 */
 	@RequestMapping("/spark/rooms")
-	public @ResponseBody ResponseEntity<List<SparkMessage>> getRooms( ) {
-		return new ResponseEntity<List<SparkMessage>> (messages, HttpStatus.OK); 
+	public @ResponseBody ResponseEntity<List<SparkRoom>> getRooms( ) {
+		return new ResponseEntity<List<SparkRoom>> (rooms, HttpStatus.OK); 
 	}
 	
 	/*
 	 * List the hooks that I know of.... 
 	 */
 	@RequestMapping("/spark/webhooks")
-	public @ResponseBody ResponseEntity<List<SparkMessage>> getHooks( ) {
-		return new ResponseEntity<List<SparkMessage>> (messages, HttpStatus.OK); 
+	public @ResponseBody ResponseEntity<List<SparkWebhook>> getHooks( ) {
+		return new ResponseEntity<List<SparkWebhook>> (webhooks, HttpStatus.OK); 
 	}
 
 	
@@ -89,14 +110,12 @@ public class SparkController implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		
-		
+		tom_logger.debug("After propoerties set - create hook to spark");
 		// To obtain a developer access token, visit http://developer.ciscospark.com
-        String accessToken = "MmZhNDc2MjMtNWY5Zi00MDU3LWI0MjUtOGJjYmM3ODBhYTYyYjNlYWMwZjctZWEx";
         //String accessToken = "MTc0NWU3NjktOGRhMC00ODU0LWI3MTItZjAwNzdlMjE4ZDhhNWUyMzMyZDItYWM1";
         
         HttpHost host = new HttpHost("localhost", 8080, "http");
         
-        URI thislocation = new URI( "" );
         /**
          * Add access token 
          */
@@ -105,12 +124,10 @@ public class SparkController implements InitializingBean {
         
     	//OAuth2ProtectedResourceDetails details = new SparkProtectedResourceDetails(accessToken );
         //OAuth2RestTemplate restTemplate = new OAuth2RestTemplate( details );
-        
+        RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
         try
         {
-	        RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
-	        
-	        //List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
+	       //List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
 	        //messageConverters.add( new SparkCollectionMessageConvertor() );
 	        //restTemplate.setMessageConverters(messageConverters);
 	        
@@ -138,7 +155,16 @@ public class SparkController implements InitializingBean {
 	        else {
 	        	tom_logger.warn( "Using Registered hook" );
 	        }
-	        	
+	        
+	        
+	        SparkMessageData message = new SparkMessageData()
+					.setText("Starting... ")
+					.setPersonId(TomBurnley);
+	        
+			ResponseEntity<SparkMessageData> response = restTemplate.postForEntity("https://api.ciscospark.com/v1/messages", message, SparkMessageData.class );
+			
+			tom_logger.info( "Received " + response.getStatusCode() );
+	        
 	        
         }
         catch( HttpMessageConversionException httpException )

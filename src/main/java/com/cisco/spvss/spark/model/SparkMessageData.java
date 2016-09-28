@@ -1,6 +1,9 @@
 package com.cisco.spvss.spark.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -13,7 +16,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
     "personEmail":"person@example.com",
     "created":"2015-12-04T17:33:56.767Z"
   }
+  
+  
+   Response when creating a message:
+   
+	"id": "Y2lzY29zcGFyazovL3VzL01FU1NBR0UvNTE0MmEzYzAtODE5OS0xMWU2LWE3MzEtZjcyMmNjNGY0YWY0",
+	"roomId": "Y2lzY29zcGFyazovL3VzL1JPT00vMGQxZDBlMjAtNjkxMC0xMWU2LThlOTYtZTk5MTJjMTM3ODU3",
+	"roomType": "group",
+	"text": "TomBot here - I'm still alive",
+	"personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9hMDI1YTdhNS1lN2NkLTQ3OWItOWUwMi0xZTMwNTEzOGIzMjc",
+	"personEmail": "tom-bot@sparkbot.io",
+	"created": "2016-09-23T14:23:37.468Z"
+
+  
  */
+
+
+
+@JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SparkMessageData {
 
@@ -21,9 +41,12 @@ public class SparkMessageData {
 		
 		private String roomId;
 		
+		@JsonProperty("toPersonId")
 		private String personId;
 		
 		private String personEmail;
+		
+		private String text;
 		
 		private String created;
 		
@@ -31,12 +54,22 @@ public class SparkMessageData {
 			return id;
 		}
 
-		public String getPersonID() {
+		public String getPersonId() {
 			return personId;
 		}
 		
-		public String getRoomID() {
+		public SparkMessageData setPersonId(String personId) {
+			this.personId = personId;
+			return this;
+		}
+		
+		public String getRoomId() {
 			return roomId;
+		}
+		
+		public SparkMessageData setRoomId(String roomId) {
+			this.roomId = roomId;
+			return this;
 		}
 		
 		public String getPersonEmail() {
@@ -47,6 +80,13 @@ public class SparkMessageData {
 			return created;
 		}
 		
+		public SparkMessageData setText(String message) {
+			this.text = message;
+			return this;
+		}
 		
+		public String getText( ) {
+			return text;
+		}
 		
 }
