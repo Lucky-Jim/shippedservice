@@ -1,5 +1,6 @@
 package com.cisco.spvss.spark;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -34,7 +36,10 @@ public class SparkController implements InitializingBean {
     
 	
 	final static String TomBurnley = "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9jNTQyN2U2My1iMWUyLTRhOTItYThiYi0wMDQ3MWM4ZTZlYTI";
+
+	private final static List<String> ignoreRooms =  Arrays.asList("Y2lzY29zcGFyazovL3VzL1JPT00vZGQ1MTcxYmItOTYwNC0zOWU3LTgyODAtM2ZkMzM1ZDZhZGQ2" );
 	
+			
 	/*
 	 * OK - so, my collections of things
 	 */
@@ -49,26 +54,38 @@ public class SparkController implements InitializingBean {
 	public String sparkHook( @RequestBody SparkNotification notification ) {
 		tom_logger.info("Incoming Sparks request");
 
-		
-		
-		
-		
-		
-		
 		// Send Message to me
 		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
+				
 		
-		SparkMessageData messageOut = new SparkMessageData()
-				.setText( "you received a message from : " + notification.getMessageData().getPersonId()  + " in : "+ notification.getMessageData().getRoomId() )
-				.setPersonId(TomBurnley);
+		try
+		{
+		
+			if( !ignoreRooms.contains( notification.getMessageData().getRoomId() ) )
+			{
+				SparkMessageData messageOut = new SparkMessageData()
+					.setText( "you received a message from : " + notification.getMessageData().getPersonId()  + " in : "+ notification.getMessageData().getRoomId() )
+					.setPersonId(TomBurnley);
+	
+	    			
+				messageOut = restTemplate.postForObject("https://api.ciscospark.com/v1/messages", messageOut, SparkMessageData.class );
+			}			
+		}
+		catch (Exception e) { 
+			
+			SparkMessageData messageOut = new SparkMessageData()
+					.setText( "Exception!" )
+					.setPersonId(TomBurnley);
 
-    			
-		messageOut = restTemplate.postForObject("https://api.ciscospark.com/v1/messages", messageOut, SparkMessageData.class );
-											  
+	    			
+			messageOut = restTemplate.postForObject("https://api.ciscospark.com/v1/messages", messageOut, SparkMessageData.class );
+		}
+				
+				
 		return "This is a String";
 	}
 	
-	@Scheduled( cron="0 * * * * MON-FRI" )
+	@Scheduled( cron="0 0 * * * MON-FRI" )
     public void reportCurrentTime() {
 		// Send Message
 		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
@@ -160,6 +177,8 @@ public class SparkController implements InitializingBean {
 	        	tom_logger.warn( "Using Registered hook" );
 	        }
 	        
+	        
+	        // Create a status message.... 
 	        
 	        SparkMessageData message = new SparkMessageData()
 					.setText("Starting... ")
