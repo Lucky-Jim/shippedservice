@@ -46,17 +46,20 @@ public class SparkController implements InitializingBean {
 	 * the webhoox that I'm using..... registered on init
 	 */
 	@RequestMapping("/spark/test")
-	public String sparkHook( @RequestBody String notification ) {
+	public String sparkHook( @RequestBody SparkNotification notification ) {
 		tom_logger.info("Incoming Sparks request");
 
 		
-			
-		// Send Message
+		
+		
+		
+		
+		
+		// Send Message to me
 		RestTemplate restTemplate = new RestTemplate( new SparkAuthorizedClientRequestFactory(accessToken) );
 		
-		
 		SparkMessageData messageOut = new SparkMessageData()
-				.setText( notification )
+				.setText( "you received a message from : " + notification.getMessageData().getPersonId()  + " in : "+ notification.getMessageData().getRoomId() )
 				.setPersonId(TomBurnley);
 
     			
